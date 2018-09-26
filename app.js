@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const basicAuth = require('express-basic-auth')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 
 app.use(basicAuth({
