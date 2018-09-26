@@ -8,4 +8,7 @@ $ node app.js
 ```
 
 - HTTP client call:
-```POST /signup```
+
+Basic Auth Credentials: user, user OR admin, admin
+
+```POST http://localhost:3000/signup```
