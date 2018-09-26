@@ -11,4 +11,4 @@ $ node app.js
 
 Basic Auth Credentials: user, user OR admin, admin
 
-```POST http://localhost:3000/signup```
+```POST http://localhost/signup```
