@@ -38,9 +38,7 @@ Please note, that if password = 1234, a claim validation error will be thrown. C
 }
 ```
 
-* Error:
-
-For example:
+* Errors:
 ```
 {
     "errors": [
