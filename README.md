@@ -1,21 +1,24 @@
 # REST-API for Azure AD B2C
 A Node JS REST API Demo for B2C
 
-- Start
+## Get Started
 ```
 $ npm install && npm update
 $ node app.js
 ```
 
-- HTTP client call:
+## HTTP Client Call:
 
--- Header:
+### API Endpoint:
+```
+http://localhost/signup
+```
+
+### Header:
+
 Basic Auth Credentials: user, user
 
--- API endpoint:
-```http://localhost/signup```
-
--- POST request body:
+### POST Request Body:
 ```
 {
   "email": "mike.qin@gmail.com",
@@ -25,7 +28,7 @@ Basic Auth Credentials: user, user
 }
 ```
 
--- Response:
+### Response Body:
 ```
 {
     "status": "1"
