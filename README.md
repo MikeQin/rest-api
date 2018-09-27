@@ -21,12 +21,13 @@ Basic Auth Credentials: user, user
 ### POST Request Body:
 ```
 {
-  "email": "mike.qin@gmail.com",
+  "email": "john.smith@gmail.com",
   "password": "2222",
-  "firstName": "Mike",
-  "lastName": "Qin"
+  "firstName": "John",
+  "lastName": "Smith"
 }
 ```
+Please note, that if password = 1234, a claim validation error will be thrown. Claim validation is handled at the endpoint.
 
 ### Response Body:
 ```
