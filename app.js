@@ -1,4 +1,5 @@
 // Authors: Michael Qin
+// https://github.com/MikeQin/rest-api
 const express = require("express");
 const app = express();
 const basicAuth = require('express-basic-auth')
@@ -26,9 +27,6 @@ function getUnauthorizedResponse(req) {
     console.log('[*] ' + msg);
     
     return msg;
-    /*return req.auth
-        ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
-        : 'No credentials provided';*/
 }
 
 app.use(bodyParser.json()); // for parsing application/json
