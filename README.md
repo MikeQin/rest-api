@@ -17,8 +17,10 @@ http://localhost/signup
 ### Header:
 
 Basic AUTH Credentials:
+```
 - Client ID: B2cRestClientId
 - Client Secret: admin
+```
 
 ### POST Request Body:
 ```
