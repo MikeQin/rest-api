@@ -10,8 +10,6 @@ const bodyParser = require('body-parser');
 
 app.use(basicAuth({
     users: {
-        'admin': 'admin',
-        'user': 'user',
         'B2cRestClientId': 'admin'
     },
     unauthorizedResponse: getUnauthorizedResponse,
