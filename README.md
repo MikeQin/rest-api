@@ -1,5 +1,5 @@
 # REST-API for Azure AD B2C
-A Node JS REST API Demo for B2C
+A Node JS REST API Demo for Azure Active Directory (AD) B2C Custom Policy. Claims exchange through body only. This API is protected with Basic AUTH.
 
 ## Get Started
 ```
