@@ -1,4 +1,4 @@
-# REST-API
+# REST-API for Azure AD B2C
 A Node JS REST API Demo for B2C
 
 - Start
