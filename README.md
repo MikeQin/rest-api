@@ -38,12 +38,21 @@ Please note, that if password = 1234, a claim validation error will be thrown. C
 }
 ```
 
-* Errors:
+* Errors (Missing Claims):
 ```
 {
     "errors": [
         "firstName is not defined!",
         "lastName is not defined!"
+    ]
+}
+```
+
+* Validation Errors (When password: '1234')
+```
+{
+    "errors": [
+        "password is too simple!"
     ]
 }
 ```
