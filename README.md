@@ -30,8 +30,22 @@ Basic Auth Credentials: user, user
 Please note, that if password = 1234, a claim validation error will be thrown. Claim validation is handled at the endpoint.
 
 ### Response Body:
+
+* Success:
 ```
 {
     "status": "1"
+}
+```
+
+* Error:
+
+For example:
+```
+{
+    "errors": [
+        "firstName is not defined!",
+        "lastName is not defined!"
+    ]
 }
 ```
