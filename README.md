@@ -9,6 +9,25 @@ $ node app.js
 
 - HTTP client call:
 
-Basic Auth Credentials: user, user OR admin, admin
+-- Header:
+Basic Auth Credentials: user, user
 
-```POST http://localhost/signup```
+-- API endpoint:
+```http://localhost/signup```
+
+-- POST request body:
+```
+{
+  "email": "mike.qin@gmail.com",
+  "password": "2222",
+  "firstName": "Mike",
+  "lastName": "Qin"
+}
+```
+
+-- Response:
+```
+{
+    "status": "1"
+}
+```
