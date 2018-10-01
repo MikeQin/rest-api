@@ -67,7 +67,7 @@ app.post("/signup", function(req, res) {
     var errorsArr = new Array();
 
     //logClaims(claims);
-    //validateClaims(claims, errorsArr);
+    validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
