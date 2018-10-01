@@ -38,21 +38,21 @@ function logClaims(claims) {
 }
 
 function validateClaims(claims, errors) {
-    /*if (!claims.email) {
+    if (claims.email == null || claims.email == '') {
         errors.push('email is not defined!');
     }
 
-    if (!claims.password) {
+    if (claims.password == null || claims.password == '') {
         errors.push('password is not defined!');
     }
        
-    if (!claims.firstName) {
+    if (claims.firstName == null || claims.firstName == '') {
         errors.push('firstName is not defined!');
     }
 
-    if (!claims.lastName) {
+    if (claims.lastName == null || claims.lastName == '') {
         errors.push('lastName is not defined!');
-    }*/
+    }
 
     if (claims.password == '1234') {
         errors.push('password is too simple!');
@@ -66,14 +66,14 @@ app.post("/signup", function(req, res) {
     var claims = req.body;
     var errorsArr = new Array();
 
-    //logClaims(claims);
+    logClaims(claims);
     validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims.lastName + ', ' + claims.firstName + ' migrated SUCCESS!' });
+        res.status(200).json({ status: claims.firstName + ' ' + claims.lastName + ' migrated SUCCESS!' });
     }
 
 });
