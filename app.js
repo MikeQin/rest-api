@@ -67,13 +67,13 @@ app.post("/signup", function(req, res) {
     var errorsArr = new Array();
 
     //logClaims(claims);
-    validateClaims(claims, errorsArr);
+    //validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: '2' });
+        res.status(200).json({ status: 'Migration SUCCESS' });
     }
 
 });
