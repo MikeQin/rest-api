@@ -38,7 +38,7 @@ function logClaims(claims) {
 }
 
 function validateClaims(claims, errors) {
-    if (!claims.email) {
+    /*if (!claims.email) {
         errors.push('email is not defined!');
     }
 
@@ -46,7 +46,7 @@ function validateClaims(claims, errors) {
         errors.push('password is not defined!');
     }
        
-    /*if (!claims.firstName) {
+    if (!claims.firstName) {
         errors.push('firstName is not defined!');
     }
 
@@ -67,13 +67,13 @@ app.post("/signup", function(req, res) {
     var errorsArr = new Array();
 
     //logClaims(claims);
-    //validateClaims(claims, errorsArr);
+    validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims.lastName });
+        res.status(200).json({ status: claims.lastName + ', ' + claims.firstName + ' migrated SUCCESS!' });
     }
 
 });
