@@ -46,13 +46,13 @@ function validateClaims(claims, errors) {
         errors.push('password is not defined!');
     }
        
-    if (!claims.firstName) {
+    /*if (!claims.firstName) {
         errors.push('firstName is not defined!');
     }
 
     if (!claims.lastName) {
         errors.push('lastName is not defined!');
-    }    
+    }*/
 
     if (claims.password == '1234') {
         errors.push('password is too simple!');
@@ -67,13 +67,13 @@ app.post("/signup", function(req, res) {
     var errorsArr = new Array();
 
     //logClaims(claims);
-    //validateClaims(claims, errorsArr);
+    validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: 'Migration SUCCESS' });
+        res.status(200).json({ status: claims.surname });
     }
 
 });
