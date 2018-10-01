@@ -32,7 +32,7 @@ function getUnauthorizedResponse(req) {
 function logClaims(claims) {
     console.log("---- log claims ---- ");
     console.log("email: " + claims.email);
-    console.log("password: " + claims.password);
+    //console.log("password: " + claims.password);
     console.log("firstName: " + claims.firstName);
     console.log("lastName: " + claims.lastName);
 }
@@ -42,9 +42,9 @@ function validateClaims(claims, errors) {
         errors.push('email is not defined!');
     }
 
-    if (claims.password == null || claims.password == '') {
+    /*if (claims.password == null || claims.password == '') {
         errors.push('password is not defined!');
-    }
+    }*/
        
     if (claims.firstName == null || claims.firstName == '') {
         errors.push('firstName is not defined!');
@@ -54,9 +54,9 @@ function validateClaims(claims, errors) {
         errors.push('lastName is not defined!');
     }
 
-    if (claims.password == '1234') {
+    /*if (claims.password == '1234') {
         errors.push('password is too simple!');
-    }    
+    }*/   
 }
 
 app.use(bodyParser.json()); // for parsing application/json
@@ -67,7 +67,7 @@ app.post("/signup", function(req, res) {
     var errorsArr = new Array();
 
     //logClaims(claims);
-    //validateClaims(claims, errorsArr);
+    validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
