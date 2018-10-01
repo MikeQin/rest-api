@@ -73,7 +73,7 @@ app.post("/signup", function(req, res) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims.surname });
+        res.status(200).json({ status: claims.lastName });
     }
 
 });
