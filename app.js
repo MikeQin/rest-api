@@ -73,7 +73,7 @@ app.post("/signup", function(req, res) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims.firstName + ' ' + claims.lastName + ' ' + claims.email + ' migrated SUCCESS!' });
+        res.status(200).json({ status: claims });
     }
 
 });
