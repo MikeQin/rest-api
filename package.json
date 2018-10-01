@@ -1,9 +1,9 @@
 {
   "name": "azure-b2c-rest-api-demo",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
+  "description": "azure-b2c-rest-api-demo",
+  "author": "Michael Qin",
+  "license": "MIT",
   "engines": {
     "node": ">=6.9.1"
   },
