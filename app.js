@@ -66,14 +66,14 @@ app.post("/signup", function(req, res) {
     var claims = req.body;
     var errorsArr = new Array();
 
-    logClaims(claims);
-    validateClaims(claims, errorsArr);
+    //logClaims(claims);
+    //validateClaims(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims.firstName + ' ' + claims.lastName + ' migrated SUCCESS!' });
+        res.status(200).json({ status: claims.firstName + ' ' + claims.lastName + ' ' + claims.email + ' migrated SUCCESS!' });
     }
 
 });
