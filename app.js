@@ -7,6 +7,7 @@ const app = express();
 const basicAuth = require('express-basic-auth')
 const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 app.use(basicAuth({
     users: {
@@ -29,34 +30,15 @@ function getUnauthorizedResponse(req) {
     return msg;
 }
 
-function logClaims(claims) {
+function log(claims) {
     console.log("---- log claims ---- ");
     console.log("email: " + claims.email);
-    //console.log("password: " + claims.password);
-    console.log("firstName: " + claims.firstName);
-    console.log("lastName: " + claims.lastName);
 }
 
-function validateClaims(claims, errors) {
-    if (claims.email == null || claims.email == '') {
+function validate(claims, errors) {
+    if (!claims.email) {
         errors.push('email is not defined!');
-    }
-
-    /*if (claims.password == null || claims.password == '') {
-        errors.push('password is not defined!');
-    }*/
-       
-    if (claims.firstName == null || claims.firstName == '') {
-        errors.push('firstName is not defined!');
-    }
-
-    if (claims.lastName == null || claims.lastName == '') {
-        errors.push('lastName is not defined!');
-    }
-
-    /*if (claims.password == '1234') {
-        errors.push('password is too simple!');
-    }*/   
+    }    
 }
 
 app.use(bodyParser.json()); // for parsing application/json
@@ -66,14 +48,35 @@ app.post("/signup", function(req, res) {
     var claims = req.body;
     var errorsArr = new Array();
 
-    //logClaims(claims);
-    validateClaims(claims, errorsArr);
+    log(claims);
+    validate(claims, errorsArr);
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({ status: claims });
+        res.status(200).json({ status: '3 - New User' });
+    }
+
+});
+
+app.post("/signin", function(req, res) {
+    var claims = req.body;
+    var errorsArr = new Array();
+
+    log(claims);
+    validate(claims, errorsArr);
+    var hashedPassword = bcrypt.hashSync(claims.password, 10);
+    // Compare hashedPassword with the One from existing Identity Provider
+
+    if (errorsArr.length > 0) {
+        res.status(400).json({ errors: errorsArr });
+    }
+    else {
+        res.status(200).json({
+            email: claims.email + '.' + hashedPassword,
+            userProfileId: new Date().getTime()
+         });
     }
 
 });
