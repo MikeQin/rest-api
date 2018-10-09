@@ -44,6 +44,24 @@ function validate(claims, errors) {
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+app.post("/api", function(req, res) {
+    var inputClaims = req.body;
+    // Inputs
+    var userName = inputClaims.userName;
+    var password = inputClaims.password;
+    var status = inputClaims.status;
+    // Outputs
+    var outputClaims = {
+        userName: userName,
+        password: password,
+        displayName: 'Joe Smith',
+        firstName: 'Joe',
+        lastName: 'Smith',
+        status: 1
+    };
+    res.status(200).json(outputClaims);
+});
+
 app.post("/api/migrate", function(req, res) {
     var inputClaims = req.body;
     var errorsArr = new Array();
