@@ -5,7 +5,7 @@
 const express = require("express");
 const app = express();
 const basicAuth = require('express-basic-auth')
-const port = process.env.PORT || 80;
+const port = 80;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
@@ -20,10 +20,10 @@ app.use(basicAuth({
 function getUnauthorizedResponse(req) {
     var msg;
     if (req.auth) {
-    msg = 'Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected!';
+        msg = 'Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected!';
     }
     else {
-    msg = 'No credentials provided!';
+        msg = 'No credentials provided!';
     }
     console.log('[*] ' + msg);
     
@@ -36,49 +36,43 @@ function log(claims) {
 }
 
 function validate(claims, errors) {
-    if (!claims.email) {
-        errors.push('email is not defined!');
+    if (!claims.userName) {
+        errors.push('userName is not defined!');
     }    
 }
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.post("/signup", function(req, res) {
-    var claims = req.body;
-    var errorsArr = new Array();
+app.post("/api/migrate", function(req, res) {
+    let inputClaims = req.body;
+    let errorsArr = new Array();
 
-    log(claims);
-    validate(claims, errorsArr);
-
-    if (errorsArr.length > 0) {
-        res.status(400).json({ errors: errorsArr });
-    }
-    else {
-        res.status(200).json({ status: '3 - New User' });
-    }
-
-});
-
-app.post("/signin", function(req, res) {
-    var claims = req.body;
-    var errorsArr = new Array();
-
-    log(claims);
-    validate(claims, errorsArr);
-    var hashedPassword = bcrypt.hashSync(claims.password, 10);
-    // Compare hashedPassword with the One from existing Identity Provider
+    //log(inputClaims);
+    validate(inputClaims, errorsArr);
+    // Inputs
+    let userName = inputClaims.userName;
+    let password = inputClaims.password;
+    let status = inputClaims.status;
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        res.status(200).json({
-            email: claims.email + '.' + hashedPassword,
-            userProfileId: new Date().getTime()
-         });
-    }
+        let hashed = bcrypt.hashSync(password, 10);
+        // Outputs
+        let outputClaims = {
+            userName: userName,
+            password: password,
+            displayName: 'Joe Smith',
+            firstName: 'Joe',
+            lastName: 'Smith',
+            status: 1,
+            hashedPassword: hashed
+        };
 
+        res.status(200).json(outputClaims);
+    }
 });
 
-app.listen(port, () => console.log("/signup API: Listening on port " + port));
+app.listen(port, () => console.log("Listening on port " + port));
