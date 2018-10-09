@@ -4,9 +4,6 @@
   "description": "azure-b2c-rest-api-demo",
   "author": "Michael Qin",
   "license": "MIT",
-  "engines": {
-    "node": ">=6.9.1"
-  },
   "scripts": {
     "start": "node app.js"
   },
