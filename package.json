@@ -1,9 +1,10 @@
 {
-  "name": "azure-b2c-rest-api-demo",
+  "name": "b2c-rest-api",
   "version": "1.0.0",
-  "description": "azure-b2c-rest-api-demo",
+  "description": "b2c-rest-api",
   "author": "Michael Qin",
   "license": "MIT",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },

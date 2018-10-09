@@ -5,7 +5,7 @@
 const express = require("express");
 const app = express();
 const basicAuth = require('express-basic-auth')
-const port = 80;
+const port = process.env.PORT || 80;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
@@ -44,26 +44,12 @@ function validate(claims, errors) {
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.post("/api/echo", function(req, res) {
-    res.status(200).json({userName: req.body.userName});
+app.get("/", function(req, res) {
+    res.status(200).send('Hello World from b2c-rest-api');
 });
 
-app.post("/api", function(req, res) {
-    var inputClaims = req.body;
-    // Inputs
-    var userName = inputClaims.userName;
-    var password = inputClaims.password;
-    var status = inputClaims.status;
-    // Outputs
-    var outputClaims = {
-        userName: userName,
-        password: password,
-        displayName: 'Joe Smith',
-        firstName: 'Joe',
-        lastName: 'Smith',
-        status: 1
-    };
-    res.status(200).json(outputClaims);
+app.post("/echo", function(req, res) {
+    res.status(200).json({userName: req.body.userName});
 });
 
 app.post("/api/migrate", function(req, res) {
@@ -71,7 +57,7 @@ app.post("/api/migrate", function(req, res) {
     var errorsArr = new Array();
 
     //log(inputClaims);
-    //validate(inputClaims, errorsArr);
+    validate(inputClaims, errorsArr);
     // Inputs
     var userName = inputClaims.userName;
     var password = inputClaims.password;
