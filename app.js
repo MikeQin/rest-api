@@ -62,7 +62,6 @@ app.post("/api/migrate", function(req, res) {
     var userName = inputClaims.userName;
     var password = inputClaims.password;
     var status = inputClaims.status;
-    var objectId = inputClaims.objectId;
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
@@ -70,7 +69,7 @@ app.post("/api/migrate", function(req, res) {
     else {
         var hashed = bcrypt.hashSync(password, 10);
 
-        if (objectId) {
+        if ('mike.qin@gmail.com') {
             status = 2;
         }
         else {
