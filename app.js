@@ -68,6 +68,16 @@ app.post("/api/migrate", function(req, res) {
     }
     else {
         var hashed = bcrypt.hashSync(password, 10);
+
+        if (userName == 'mike.qin@gmail.com') {
+            status = 2;
+        }
+        else {
+            status = 1;
+        }
+
+        console.log('status = ' + status);
+
         // Outputs
         var outputClaims = {
             userName: userName,
@@ -75,7 +85,7 @@ app.post("/api/migrate", function(req, res) {
             displayName: 'Joe Smith',
             firstName: 'Joe',
             lastName: 'Smith',
-            status: 1,
+            status: status,
             hashedPassword: hashed
         };
 
