@@ -45,23 +45,23 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.post("/api/migrate", function(req, res) {
-    let inputClaims = req.body;
-    let errorsArr = new Array();
+    var inputClaims = req.body;
+    var errorsArr = new Array();
 
     //log(inputClaims);
-    validate(inputClaims, errorsArr);
+    //validate(inputClaims, errorsArr);
     // Inputs
-    let userName = inputClaims.userName;
-    let password = inputClaims.password;
-    let status = inputClaims.status;
+    var userName = inputClaims.userName;
+    var password = inputClaims.password;
+    var status = inputClaims.status;
 
     if (errorsArr.length > 0) {
         res.status(400).json({ errors: errorsArr });
     }
     else {
-        let hashed = bcrypt.hashSync(password, 10);
+        var hashed = bcrypt.hashSync(password, 10);
         // Outputs
-        let outputClaims = {
+        var outputClaims = {
             userName: userName,
             password: password,
             displayName: 'Joe Smith',
