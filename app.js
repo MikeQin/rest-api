@@ -44,6 +44,10 @@ function validate(claims, errors) {
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+app.post("/api/echo", function(req, res) {
+    res.status(200).json({userName: req.body.userName});
+});
+
 app.post("/api", function(req, res) {
     var inputClaims = req.body;
     // Inputs
