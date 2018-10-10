@@ -69,14 +69,7 @@ app.post("/api/migrate", function(req, res) {
     else {
         var hashed = bcrypt.hashSync(password, 10);
 
-        if (userName == 'mike.qin@gmail.com') {
-            status = 2;
-        }
-        else {
-            status = 1;
-        }
-
-        console.log('status = ' + status);
+        console.log('login status = ' + status);
 
         // Outputs
         var outputClaims = {
@@ -85,12 +78,39 @@ app.post("/api/migrate", function(req, res) {
             displayName: 'Joe Smith',
             firstName: 'Joe',
             lastName: 'Smith',
-            status: status,
+            status: setStatus(status),
             hashedPassword: hashed
         };
+
+        console.log('set status = ' + status);
 
         res.status(200).json(outputClaims);
     }
 });
+
+function setStatus(loginStatus) {
+    let status = 0; // not migrated
+    switch(loginStatus) {
+        case 0: // not migrated, 1st time login
+            // migrate user logic goes here
+            // ...
+            // 1) after successful login
+            status = 1;
+            // 2) if not found, then status = 3; // new user
+            // 3) if login error, throw new Error ('login error');
+            // TODO: can covisint distinguish 2) & 3) ??
+            break;
+        case 1: // 1st time after migration
+            status = 2; // set: already migrated
+            break;
+        case 2: // 2 - already migrated
+        case 3: // 3 - new user
+            status = loginStatus;
+            break;            
+        default:
+            throw new Error('Error on user status. status = ' + loginStatus);
+    }
+    return status;
+}
 
 app.listen(port, () => console.log("Listening on port " + port));
