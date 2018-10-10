@@ -69,7 +69,7 @@ app.post("/api/migrate", function(req, res) {
     else {
         var hashed = bcrypt.hashSync(password, 10);
 
-        if ('mike.qin@gmail.com') {
+        if (userName == 'mike.qin@gmail.com') {
             status = 2;
         }
         else {
